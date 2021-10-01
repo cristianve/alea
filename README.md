@@ -14,17 +14,17 @@ To complete the Backend Knowledge test, you should complete the following goals.
 
 To complete this test, you must use the following prerequisites:
 
-1.      Use Java + SpringBoot
+  1. Use Java + SpringBoot
 
-2.      Unit Tests
+  2. Unit Tests
 
-3.      Use PokéAPI (https://pokeapi.co/api/v2)
+  3. Use PokéAPI (https://pokeapi.co/api/v2)
 
-4.      We only want Pokémons of “Red Version”. You are able to find this information one the section “game_indices” for each Pokémon:
+  4. We only want Pokémons of “Red Version”. You are able to find this information one the section “game_indices” for each Pokémon:
 
-1.      Version_name: red
+    1. Version_name: red
 
-2.      Version_url : https://pokeapi.co/api/v2/version/1
+    2. Version_url : https://pokeapi.co/api/v2/version/1
 
 Our Recommendations:
 
