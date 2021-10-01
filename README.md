@@ -32,7 +32,7 @@ Our Recommendations:
 
 · Use H2database if you want/need to store some information in a database instead of using an external DB.
 
-· Spring initializr: https://start.spring.io/", "currentPeriod": "3rd Quarter" }                                                                                                                                 |
+· Spring initializr: https://start.spring.io/.                                                                                                                    |
 
 # Results 📷
 
