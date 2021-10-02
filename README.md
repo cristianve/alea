@@ -35,6 +35,15 @@ Our Recommendations:
 · Spring initializr: https://start.spring.io/.                                                                                                                    |
 
 # Results 📷
+## Heaviest - Top 5️- JSON Response💪
+![Heaviest](img/Heaviest.JPG)
+
+## Highest - Top 5️- JSON Response 💪
+![Heaviest](img/Highest.JPG)
+
+## Base Experience - Top 5️- JSON Response 💪
+![Heaviest](img/BaseExperience.JPG)
+
 
 ## Unitary testing ✔️:
 ![InvalidFormat](img/UnitaryTesting.JPG)
