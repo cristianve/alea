@@ -6,11 +6,11 @@
 
 To complete the Backend Knowledge test, you should complete the following goals.
 
-· Show in JSON format via HTTP the 5 heaviest Pokémons.
-
-· Show in JSON format via HTTP the 5 highest Pokémons.
-
-· Show in JSON format via HTTP the 5 Pokémons with more base experience.
+| Requirement                                                            | PokeAPI JSON Field |
+|------------------------------------------------------------------------|--------------------|
+| Show in JSON format via HTTP the 5 heaviest Pokémons.                  |      "weight"      |
+| Show in JSON format via HTTP the 5 highest Pokémons.                   |      "height"      |
+| Show in JSON format via HTTP the 5 Pokémons with more base experience. |  "base_experience" |
 
 To complete this test, you must use the following prerequisites:
 
@@ -22,9 +22,9 @@ To complete this test, you must use the following prerequisites:
 
   4. We only want Pokémons of “Red Version”. You are able to find this information one the section “game_indices” for each Pokémon:
 
-    1. Version_name: red
+        1. Version_name: red
 
-    2. Version_url : https://pokeapi.co/api/v2/version/1
+        2. Version_url : https://pokeapi.co/api/v2/version/1
 
 Our Recommendations:
 
