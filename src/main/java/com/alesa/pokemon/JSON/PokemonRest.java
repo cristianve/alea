@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -26,5 +28,8 @@ public class PokemonRest {
 
     @JsonProperty("weight")
     private int weight;
+
+    @JsonProperty("game_indices")
+    private List<GameIndicesRest> gameIndicesRestList;
 
 }
