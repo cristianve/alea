@@ -35,6 +35,25 @@ Our Recommendations:
 · Spring initializr: https://start.spring.io/.                                                                                                                    |
 
 # Results 📷
+End points list:
+* http://localhost:8080/api/highest
+* http://localhost:8080/api/heaviest
+* http://localhost:8080/api/baseExperience
+
+Local H2 Database:
+* http://localhost:8080/h2-console
+
+Java Version:
+* 1.8
+
+Maven dependencies used:
+* log4j
+* junit
+* lombok
+* JPA (Repositories)
+* Spring-boot (Web + test)
+
+
 ## Heaviest - Top 5️- JSON Response💪
 ![Heaviest](img/Heaviest.JPG)
 
@@ -46,4 +65,4 @@ Our Recommendations:
 
 
 ## Unitary testing ✔️:
-![InvalidFormat](img/UnitaryTesting.JPG)
+![InvalidFormat](img/UnitTest.JPG)

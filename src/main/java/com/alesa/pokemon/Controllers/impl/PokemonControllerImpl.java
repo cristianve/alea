@@ -15,26 +15,24 @@ import java.util.List;
 @RequestMapping(value = "/api")
 public class PokemonControllerImpl implements PokemonController {
 
-
     @Autowired
     private PokemonService pokemonService;
 
-
     @Override
-    @RequestMapping(value = "/heaviest",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/heaviest", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<PokemonEntity> retrieveHeaviest() {
 
         return pokemonService.retrieveHeaviest();
     }
 
     @Override
-    @RequestMapping(value = "/highest")
+    @RequestMapping(value = "/highest", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<PokemonEntity> retrieveHighest() {
         return pokemonService.retrieveHighest();
     }
 
     @Override
-    @RequestMapping(value = "/baseExperience")
+    @RequestMapping(value = "/baseExperience", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<PokemonEntity> retrieveMoreBaseExperience() {
         return pokemonService.retrieveMoreBaseExperience();
     }

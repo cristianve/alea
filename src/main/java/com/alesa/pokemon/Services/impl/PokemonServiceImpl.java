@@ -34,17 +34,14 @@ public class PokemonServiceImpl implements PokemonService {
     @Override
     public void loadAllDatabase() {
 
-
         RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Connection", "Close");
-        headers.add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36");
+        HttpHeaders headers = getHttpHeaders();
         HttpEntity<String> entity = new HttpEntity<String>(headers);
 
         logger.info("Loanding all Pokemons from PokeAPI to local H2 Database. This can take up to 2 minutes.");
 
         try {
-            isDataBaseLoaded = true;
+            setDataBaseLoaded(true);
             int maxPokemon = this.getMaxPokemonCount();
 
             for (int i = 0; i < maxPokemon; i++) {
@@ -53,10 +50,7 @@ public class PokemonServiceImpl implements PokemonService {
                 ResponseEntity<PokemonRest> response = restTemplate.exchange(String.format(API_URL, i + 1), HttpMethod.GET, entity,
                         PokemonRest.class, i + 1);
 
-                boolean isRedVersion = response.getBody().getGameIndicesRestList().stream().anyMatch(gameIndicesRest ->
-                        gameIndicesRest.getVersionRest().getName().equals("red"));
-
-                if (isRedVersion) {
+                if (isRedVersion(response)) {
                     pokemonRepository.save(new PokemonEntity(response.getBody().getId(), response.getBody().getName(),
                             response.getBody().getHeight(), response.getBody().getWeight(), response.getBody().getBaseExperience()));
                 }
@@ -68,12 +62,37 @@ public class PokemonServiceImpl implements PokemonService {
 
     }
 
+
+    @Override
+    public List<PokemonEntity> retrieveHeaviest() {
+        if (!isDataBaseLoaded()) {
+            this.loadAllDatabase();
+        }
+
+        return pokemonRepository.getTopFiveHeaviest();
+    }
+
+    @Override
+    public List<PokemonEntity> retrieveHighest() {
+        if (!isDataBaseLoaded()) {
+            this.loadAllDatabase();
+        }
+        return pokemonRepository.getTopFiveHighest();
+    }
+
+    @Override
+    public List<PokemonEntity> retrieveMoreBaseExperience() {
+        if (!isDataBaseLoaded()) {
+            this.loadAllDatabase();
+        }
+        return pokemonRepository.getTopFiveBaseExperience();
+    }
+
+
     private int getMaxPokemonCount() {
 
         RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Connection", "Close");
-        headers.add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36");
+        HttpHeaders headers = getHttpHeaders();
         HttpEntity<String> entity = new HttpEntity<String>(headers);
 
 
@@ -83,29 +102,26 @@ public class PokemonServiceImpl implements PokemonService {
         return response.getBody().getCount();
     }
 
-
-    @Override
-    public List<PokemonEntity> retrieveHeaviest() {
-        if (!isDataBaseLoaded) {
-            this.loadAllDatabase();
-        }
-
-        return pokemonRepository.getTopFiveHeaviest();
+    private HttpHeaders getHttpHeaders() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Connection", "Close");
+        headers.add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36");
+        return headers;
     }
 
-    @Override
-    public List<PokemonEntity> retrieveHighest() {
-        if (!isDataBaseLoaded) {
-            this.loadAllDatabase();
-        }
-        return pokemonRepository.getTopFiveHighest();
+
+    public boolean isDataBaseLoaded() {
+        return isDataBaseLoaded;
     }
 
-    @Override
-    public List<PokemonEntity> retrieveMoreBaseExperience() {
-        if (!isDataBaseLoaded) {
-            this.loadAllDatabase();
-        }
-        return pokemonRepository.getTopFiveBaseExperience();
+    public void setDataBaseLoaded(boolean dataBaseLoaded) {
+        isDataBaseLoaded = dataBaseLoaded;
     }
+
+
+    private boolean isRedVersion(ResponseEntity<PokemonRest> response) {
+        return response.getBody().getGameIndicesRestList().stream().anyMatch(gameIndicesRest ->
+                gameIndicesRest.getVersionRest().getName().equals("red"));
+    }
+
 }
